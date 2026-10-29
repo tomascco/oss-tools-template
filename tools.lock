@@ -1,0 +1,18 @@
+# Versão fixada da OSS CAD Suite (https://github.com/YosysHQ/oss-cad-suite-build).
+# Lido pelo scripts/setup-tools.sh (bash) e pelo Makefile (include).
+# Formato: CHAVE=valor, sem espaços e sem aspas.
+#
+# Release 2026-10-20: Verilator 5.053 (devel, depois do 5.052), Yosys 0.70+176
+# com sv-elab (read_slang) embutido, z3 4.15.5.
+#
+# Para atualizar: troque a data, baixe o novo .tgz, rode `sha256sum` nele e
+# escreva o resultado abaixo. Depois rode `make tools`.
+OSS_CAD_SUITE_DATE=2026-10-20
+OSS_CAD_SUITE_SHA256=8b9975b9a7b4336ab4fce180328ecc38313aa8c96fedb8d399edbbf7984f9a3c
+
+# lz4 (https://github.com/lz4/lz4), só para hosts sem lz4.h. O escritor de FST
+# do Verilator 5.053+ (--trace-fst) inclui <lz4.h> e liga com -llz4, e a OSS
+# CAD Suite não traz esses arquivos. Nesses hosts o `make tools` compila uma
+# liblz4.a local em .tools/lz4-<versão>/.
+LZ4_VERSION=1.10.0
+LZ4_SHA256=537512904744b35e232912055ccf8ec66d768639ff3abe5788d90d792ec5f48b

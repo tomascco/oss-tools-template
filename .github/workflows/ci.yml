@@ -1,0 +1,27 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+
+      # A OSS CAD Suite instalada pelo `make tools` fica em .tools/. A chave
+      # muda com o tools.lock, então trocar de versão invalida o cache.
+      - uses: actions/cache@v6
+        with:
+          path: .tools
+          key: oss-cad-suite-${{ hashFiles('tools.lock') }}
+
+      # O mesmo caminho de instalação usado localmente; nada vem do apt.
+      # O `make fpga` fica de fora: precisa do Vivado, que não está no CI.
+      - run: make tools
+      - run: make lint
+      - run: make test
+      - run: SEED=2 make test
+      - run: SEED=3 make test
+      - run: make synth

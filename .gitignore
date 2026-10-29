@@ -1,0 +1,22 @@
+build/
+.tools/
+*.fst
+*.vcd
+
+# Vivado (o make fpga roda dentro de build/fpga/, mas o Vivado aberto à mão
+# deixa estes arquivos onde for chamado)
+.Xil/
+vivado*.jou
+vivado*.log
+vivado*.str
+clockInfo.txt
+
+# Xcelium / SimVision (se usados à mão)
+xcelium.d/
+waves.shm/
+.simvision/
+xrun.history
+xrun.key
+xrun.log
+.symbolnamelist
+.symbolportinfomap
