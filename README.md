@@ -9,6 +9,34 @@ Tudo, exceto o bitstream, usa ferramentas abertas da
 do próprio repositório por um único comando. O bitstream é gerado pelo Yosys (síntese)
 junto com o Vivado (place & route).
 
+## Início rápido
+
+1. **Instale e teste o ambiente** (só na primeira vez; baixa cerca de 700 MB):
+
+   ```sh
+   make setup
+   ```
+
+2. **Veja as ondas do exemplo**, um contador ([rtl/counter.sv](rtl/counter.sv)) com seu
+   testbench ([tb/counter_tb.sv](tb/counter_tb.sv)):
+
+   ```sh
+   make waves counter
+   ```
+
+   Isso roda o teste, escreve `build/counter.fst` e abre no Surfer.
+
+3. **Crie o seu módulo**: escreva `rtl/<módulo>.sv` e `tb/<módulo>_tb.sv`, usando o
+   counter como modelo, e rode:
+
+   ```sh
+   make test <módulo>
+   make waves <módulo>
+   ```
+
+   Não precisa mexer no Makefile: os arquivos novos são achados sozinhos. O passo a passo
+   completo, até a placa, está em [Começando uma atividade](#começando-uma-atividade).
+
 ## Instalação
 
 O host precisa só de `g++` (10 ou mais novo), `make` e `perl`, sem acesso de root.
